@@ -39,6 +39,14 @@ export class FactorialService {
       });
   }
 
+  reactiveFactorial(n: number): Observable<number> {
+    return Observable.of(new PageContext(n))
+      .expand( ctx => {
+        return (ctx.completed) ? Observable.empty() : this.processPage(ctx);
+      })
+      .map(ctx => ctx.result);
+  }
+
   private processPage(ctx: PageContext): Observable<PageContext> {
     console.log(`processPage( startAt=${ctx.startAt} )`);
     ctx.startAt = ctx.startAt + 1;

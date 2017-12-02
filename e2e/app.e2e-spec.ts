@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('rxjs-recursive-observable App', () => {
+describe('angular-snippets App', () => {
   let page: AppPage;
 
   beforeEach(() => {
