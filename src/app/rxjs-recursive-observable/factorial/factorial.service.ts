@@ -3,7 +3,9 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/empty';
+import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/expand';
 
 class PageContext {
@@ -51,6 +53,6 @@ export class FactorialService {
     console.log(`processPage( startAt=${ctx.startAt} )`);
     ctx.startAt = ctx.startAt + 1;
     ctx.result = ctx.result * ctx.startAt;
-    return Observable.of(ctx);
+    return Observable.of(ctx).delay(500);
   }
 }
