@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RxjsRecursiveObservableModule } from './rxjs-recursive-observable/rxjs-recursive-observable.module';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    RxjsRecursiveObservableModule
+    RxjsRecursiveObservableModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
