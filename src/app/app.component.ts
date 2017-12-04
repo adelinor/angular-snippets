@@ -16,16 +16,30 @@ export class AppComponent {
 
   constructor(private factorialService: FactorialService) {}
 
-  computeFactorial() {
-    this.factorialResult = null;
+  computeFactorial(): void {
     console.log('Reactive ' + this.reactive);
-    const op = (this.reactive) ?
-      this.factorialService.reactiveFactorial(this.n) :
-      this.factorialService.factorial(this.n);
-    op.subscribe(
+    if (this.reactive) {
+      this.computeFactorialReactive();
+    } else {
+      this.computeFactorialBlocking();      
+    }
+  }
+
+  private computeFactorialBlocking(): void {
+    this.factorialResult = null;
+    this.factorialService.factorial(this.n).subscribe(
       r => {
         this.factorialResult = r;
       }
     );
   }
+  private computeFactorialReactive(): void {
+    this.factorialResult = null;
+    this.factorialService.reactiveFactorial(this.n).subscribe(
+      r => {
+        this.factorialResult = r;
+      }
+    );
+  }
+
 }
