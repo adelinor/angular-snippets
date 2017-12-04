@@ -12,7 +12,8 @@ export class AppComponent {
   n: number = null;
   reactive: boolean = false;
 
-  private factorialResult: number;
+  factorialResult: number;
+  isFinal = false;
 
   constructor(private factorialService: FactorialService) {}
 
@@ -25,20 +26,35 @@ export class AppComponent {
     }
   }
 
-  private computeFactorialBlocking(): void {
+  updateInput(event): void {
+    console.log('Upd=' + event.target.value);
+    this.n = event.target.value;
     this.factorialResult = null;
+    this.isFinal = false;
+  }
+
+  toggleMethod(): void {
+    this.reactive = ! this.reactive;
+    this.factorialResult = null;
+    this.isFinal = false;
+  }
+
+  private computeFactorialBlocking(): void {
     this.factorialService.factorial(this.n).subscribe(
       r => {
         this.factorialResult = r;
-      }
+      },
+      err => console.error(err),
+      () => this.isFinal = true
     );
   }
   private computeFactorialReactive(): void {
-    this.factorialResult = null;
     this.factorialService.reactiveFactorial(this.n).subscribe(
       r => {
         this.factorialResult = r;
-      }
+      },
+      err => console.error(err),
+      () => this.isFinal = true
     );
   }
 

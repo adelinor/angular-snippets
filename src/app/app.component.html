@@ -1,26 +1,33 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<div style="padding: 1em;">
   <h1>
     Welcome to {{ title }}!
   </h1>
 
   <h3>Compute factorial recursively</h3>
-  <input type="checkbox" [checked]="reactive" (change)="reactive = ! reactive">
-  Reactive?
-  <input type="text" [value]="n" (input)="n = $event.target.value">
-  <button (click)="computeFactorial()" [disabled]="! n">Factorial</button>
-  <span *ngIf="factorialResult">Result: {{factorialResult}}</span>
+
+  <div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox"  class="form-check-input"
+              [checked]="reactive" (change)="toggleMethod()">
+        Reactive?
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="factorialInput">Enter input to compute</label>
+      <input type="text"  class="form-control" id="factorialInput"
+            [value]="n" (input)="updateInput($event)">
+    </div>
+    <button class="btn btn-light"
+            *ngIf="! factorialResult"
+            (click)="computeFactorial()" [disabled]="! n">Compute</button>
+    <div class="alert"
+            [ngClass]="{ 'alert-light': (! isFinal), 'alert-info': isFinal }"
+            role="alert"
+            *ngIf="factorialResult">
+      <span *ngIf="isFinal">{{ n }}! =</span> {{factorialResult}}
+    </div>
+  </div>
+
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
