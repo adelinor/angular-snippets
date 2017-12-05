@@ -5,6 +5,7 @@ import { RxjsRecursiveObservableModule } from './rxjs-recursive-observable/rxjs-
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { BlobSaveModule } from './blob-save/blob-save.module';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { AppRoutingModule } from './/app-routing.module';
   imports: [
     BrowserModule,
     RxjsRecursiveObservableModule,
+    BlobSaveModule,
     AppRoutingModule
   ],
   providers: [],
