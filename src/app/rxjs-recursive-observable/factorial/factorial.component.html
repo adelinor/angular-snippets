@@ -1,30 +1,27 @@
-<div style="padding: 1em;">
-    <h3>Compute factorial recursively</h3>
-  
-    <div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input type="checkbox"  class="form-check-input"
-                [checked]="reactive" (change)="toggleMethod()">
-          Reactive?
-        </label>
-      </div>
-      <div class="form-group">
-        <label for="factorialInput">Enter input to compute</label>
-        <input type="text"  class="form-control" id="factorialInput"
-              [value]="n" (input)="updateInput($event)">
-      </div>
-      <button class="btn btn-light"
-              *ngIf="! factorialResult"
-              (click)="computeFactorial()" [disabled]="! n">Compute</button>
-      <div class="alert"
-              [ngClass]="{ 'alert-light': (! isFinal), 'alert-info': isFinal }"
-              role="alert"
-              *ngIf="factorialResult">
-        <span *ngIf="isFinal">{{ n }}! =</span> {{factorialResult}}
-      </div>
-    </div>
-  
+<h1>RxJs Recursive Observable</h1>
+
+<div>
+  <div class="form-check">
+    <label class="form-check-label">
+      <input type="checkbox"  class="form-check-input"
+            [checked]="reactive" (change)="toggleMethod()">
+      Emit results during recursion?
+    </label>
   </div>
+  <div class="form-group">
+    <label for="factorialInput">Enter input to compute</label>
+    <input type="text"  class="form-control" id="factorialInput"
+          [value]="n" (input)="updateInput($event)">
+  </div>
+  <button class="btn btn-light"
+          *ngIf="! factorialResult"
+          (click)="computeFactorial()" [disabled]="! n">Compute</button>
+  <div class="alert"
+          [ngClass]="{ 'alert-light': (! isFinal), 'alert-info': isFinal }"
+          role="alert"
+          *ngIf="factorialResult">
+    <span *ngIf="isFinal">{{ n }}! =</span> {{factorialResult}}
+  </div>
+</div>
   
   

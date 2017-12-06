@@ -5,7 +5,7 @@ describe('FactorialService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [FactorialService]
+      providers: [ FactorialService ]
     });
   });
 

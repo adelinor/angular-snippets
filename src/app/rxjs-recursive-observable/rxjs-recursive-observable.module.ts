@@ -8,6 +8,6 @@ import { FactorialComponent } from './factorial/factorial.component';
     CommonModule
   ],
   providers: [ FactorialService ],
-  declarations: [FactorialComponent]
+  declarations: [ FactorialComponent ]
 })
 export class RxjsRecursiveObservableModule { }

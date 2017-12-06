@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FactorialComponent } from './factorial.component';
+import { FactorialService } from './factorial.service';
 
 describe('FactorialComponent', () => {
   let component: FactorialComponent;
@@ -8,7 +9,9 @@ describe('FactorialComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FactorialComponent ]
+      declarations: [ FactorialComponent ],
+      providers: [ FactorialService ]
+      
     })
     .compileComponents();
   }));
