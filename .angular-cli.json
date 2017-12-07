@@ -46,7 +46,7 @@
       "project": "src/tsconfig.spec.json",
       "exclude": [
         "**/node_modules/**",
-        "**/router-stubs.ts"
+        "**/testing/router-stubs.ts"
       ]
     },
     {
