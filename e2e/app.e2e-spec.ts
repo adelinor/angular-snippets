@@ -7,8 +7,8 @@ describe('angular-snippets App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display rxjs recursive observable intro', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual('RxJs Recursive Observable');
   });
 });
