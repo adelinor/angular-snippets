@@ -17,5 +17,5 @@ install:
 script:
   - ng lint
   - ng build --prod
-  - ng test
+  - ng test --single-run
   - ng e2e
