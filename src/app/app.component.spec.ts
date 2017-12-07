@@ -11,7 +11,7 @@ describe('AppComponent', () => {
       ],
       providers: [
         FactorialService
-      ]      
+      ]
     }).compileComponents();
   }));
   it('should create the app', async(() => {

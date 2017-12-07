@@ -20,8 +20,8 @@ export class BlobSaveComponent implements OnInit, OnDestroy {
    * White list blob urls as explained in:
    * https://stackoverflow.com/questions/37432609/how-to-avoid-adding-prefix-unsafe-to-link-by-angular2
    */
-  constructor(private sanitizer: DomSanitizer) { }  
-  
+  constructor(private sanitizer: DomSanitizer) { }
+
   ngOnInit() {
     const cnt = new Blob([this.xml], {type: 'text/xml'});
     this.urlAsString = window.URL.createObjectURL(cnt);

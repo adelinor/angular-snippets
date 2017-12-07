@@ -10,7 +10,7 @@ import { FactorialService } from './factorial.service';
 export class FactorialComponent {
 
   n: number = null;
-  reactive: boolean = false;
+  reactive = false;
 
   factorialResult: number;
   isFinal = false;
@@ -22,7 +22,7 @@ export class FactorialComponent {
     if (this.reactive) {
       this.computeFactorialReactive();
     } else {
-      this.computeFactorialBlocking();      
+      this.computeFactorialBlocking();
     }
   }
 

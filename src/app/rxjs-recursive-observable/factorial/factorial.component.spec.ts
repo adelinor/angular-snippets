@@ -11,7 +11,7 @@ describe('FactorialComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ FactorialComponent ],
       providers: [ FactorialService ]
-      
+
     })
     .compileComponents();
   }));

@@ -35,7 +35,7 @@ export class PaginationService {
       ctx.links.push(ctx.url);
       ctx.url = nextLink;
       return ctx;
-    })
+    });
 
   }
 

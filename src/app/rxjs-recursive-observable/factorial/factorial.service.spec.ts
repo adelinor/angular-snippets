@@ -21,11 +21,11 @@ describe('FactorialService', () => {
     }));
   }
 
-  testFactorial(0,1);
-  testFactorial(1,1);
-  testFactorial(2,2);
-  testFactorial(3,6);
-  testFactorial(10,3628800);
+  testFactorial(0, 1);
+  testFactorial(1, 1);
+  testFactorial(2, 2);
+  testFactorial(3, 6);
+  testFactorial(10, 3628800);
 
   function testReactiveFactorial(n: number, expectedResult: number): void {
     let result = null;
@@ -44,10 +44,10 @@ describe('FactorialService', () => {
       );
     }));
   }
-  testReactiveFactorial(0,1);
-  testReactiveFactorial(1,1);
-  testReactiveFactorial(2,2);
-  testReactiveFactorial(3,6);
-  testReactiveFactorial(10,3628800);
-  
+  testReactiveFactorial(0, 1);
+  testReactiveFactorial(1, 1);
+  testReactiveFactorial(2, 2);
+  testReactiveFactorial(3, 6);
+  testReactiveFactorial(10, 3628800);
+
 });
