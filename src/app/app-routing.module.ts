@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { FactorialComponent } from './rxjs-recursive-observable/factorial/factorial.component';
-import { BlobSaveComponent } from './blob-save/blob-save/blob-save.component';
+import { BlobSaveComponent } from './blob-save/blob-save.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
