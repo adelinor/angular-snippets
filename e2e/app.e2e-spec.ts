@@ -9,6 +9,6 @@ describe('angular-snippets App', () => {
 
   it('should display rxjs recursive observable intro', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('RxJs Recursive Observable');
+    expect(page.getParagraphText()).toEqual('Recursive Observable');
   });
 });
