@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { FactorialService } from './rxjs-recursive-observable/factorial/factorial.service';
 import { FactorialComponent } from './rxjs-recursive-observable/factorial/factorial.component';
 import { BlobSaveComponent } from './blob-save/blob-save.component';
+import { DownloadService } from './blob-save/download.service';
 
 
 @NgModule({
@@ -21,7 +22,10 @@ import { BlobSaveComponent } from './blob-save/blob-save.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [ FactorialService ],
+  providers: [
+    FactorialService,
+    DownloadService
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BlobSaveComponent } from './blob-save.component';
+import { DownloadService } from './download.service';
 
 describe('BlobSaveComponent', () => {
   let component: BlobSaveComponent;
@@ -8,7 +9,8 @@ describe('BlobSaveComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BlobSaveComponent ]
+      declarations: [ BlobSaveComponent ],
+      providers: [ DownloadService ]
     })
     .compileComponents();
   }));

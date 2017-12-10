@@ -1,1 +1,22 @@
-<a [href]="contentUrl" download="Download.xml">Download</a>
+<h1>Blob save as</h1>
+
+<p>
+Clicking on "Download" triggers a call (to an emulated
+ backend) which returns an XML that can be saved.
+</p>
+
+
+<button class="btn btn-light" *ngIf="! contentUrl && ! downloading"
+    (click)="getDoc()">Download</button>
+
+<div class="progress" *ngIf="! contentUrl && downloading">
+    <div class="progress-bar progress-bar-striped progress-bar-animated"
+        role="progressbar"
+        aria-valuenow="100"
+        aria-valuemin="0" aria-valuemax="100"
+        style="width: 100%">Downloading ...</div>
+</div>
+
+<a class="btn btn-primary" *ngIf="contentUrl"
+    [href]="contentUrl"
+    download="Download.xml">Save document</a>
