@@ -16,6 +16,7 @@ script:
   # Use Chromium instead of Chrome.
   - export CHROME_BIN=chromium-browser
   - xvfb-run -a npm run test -- --single-run --no-progress --browser=ChromeNoSandbox
+  - webdriver-manager update --versions.chrome=2.33
   - xvfb-run -a npm run e2e -- --no-progress --config=protractor-ci.conf.js
   - xvfb-run -a ng lint -- --no-progress
   - xvfb-run -a ng build -- --prod
