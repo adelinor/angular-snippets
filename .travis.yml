@@ -1,21 +1,21 @@
 dist: trusty
-sudo: required
+sudo: false
+
 language: node_js
 node_js:
-  - "6.10"
-os:
-  - linux
-env:
-  global:
-    - DBUS_SESSION_BUS_ADDRESS=/dev/null
-    - DISPLAY=:99.0
-    - CHROME_BIN=chromium-browser
-before_script:
-  - sh -e /etc/init.d/xvfb start
+  - "6"
+
+cache:
+  directories:
+     - ./node_modules
+
 install:
   - npm install
+
 script:
-  - ng lint
-  - ng build --prod
-  - ng test --single-run
-  - ng e2e
+  # Use Chromium instead of Chrome.
+  - export CHROME_BIN=chromium-browser
+  - xvfb-run -a npm run test -- --single-run --no-progress --browser=ChromeNoSandbox
+  - xvfb-run -a npm run e2e -- --no-progress --config=protractor-ci.conf.js
+  - xvfb-run -a ng lint -- --no-progress
+  - xvfb-run -a ng build -- --prod
