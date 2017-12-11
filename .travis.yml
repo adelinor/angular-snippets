@@ -1,5 +1,11 @@
 dist: trusty
 sudo: false
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 
 language: node_js
 node_js:
@@ -16,7 +22,6 @@ script:
   # Use Chromium instead of Chrome.
   - export CHROME_BIN=chromium-browser
   - xvfb-run -a npm run test -- --single-run --no-progress --browser=ChromeNoSandbox
-  - xvfb-run -a npm run pree2e -- --no-progress --config=protractor-ci.conf.js
   - xvfb-run -a npm run e2e -- --no-progress --config=protractor-ci.conf.js
   - xvfb-run -a ng lint -- --no-progress
   - xvfb-run -a ng build -- --prod
