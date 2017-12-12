@@ -41,7 +41,7 @@ From a single page, we:
 * get to know the next **start at** position for reading the next page
 * also find out whether the page traversal is **complete**.
 
-This is encapsulated in the `IterationContext` class:
+This is encapsulated in:
 
 ```ts
 class IterationContext {
@@ -82,7 +82,7 @@ what we got: *a simple transformation*, or, we need to read another
 page: *an async call* returning an observable. Because of the
 second condition we need to use the [mergeMap](http://reactivex.io/documentation/operators/flatmap.html) operator.
 
-So in the simple while loop becomes:
+So the simple while loop becomes:
 
 ```ts
 private iteratePages(ctx: IterationContext): Observable<IterationContext> {
