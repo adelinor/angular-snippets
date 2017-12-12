@@ -8,8 +8,7 @@ Every snippet is articulated around:
 * *demo*: link to demo of concepts
 * *further*: if applicable, what would deserve more analysis
 
-All snippets can be tried on the [demo installation]
-(https://adelinor.github.io/angular-snippets)
+All snippets can be tried on the [demo installation](https://adelinor.github.io/angular-snippets)
 
 ## RxJs Recursive Observable
 
