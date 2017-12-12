@@ -20,41 +20,86 @@ when:
 * or when you get an empty result set
 
 #### Concepts
-The problem above can be well expressed with a recursion: *Fetch data for page until returned size matches page size*.
 
-From Promises in AngularJS, the HttpClient in Angular returns an `Observable`.
+__Service__
+The service that makes use of the paging API returns an `Observable`.
+The result type (the generic type parameter) would typically be an
+array of items.
 
-I struggled for a couple of days to express with Observables the following transformation to apply on the result of a single page:
-* call another page if number of items equals page size
-* conclude otherwise
+__Component__
+The caller of the service will *subscribe* to the returned `Observable` 
+to display or process the incoming data.
 
-This lead me to create this snippet. As I could not find an open paging API, I using the classic factorial calculation: FactorialService class (TODO: include link) exposes a method:
+__Service implementation__
+Iterating through pages will be implemented with the Angular
+`HttpClient`.
+It will start from the initial page (position zero) and move up until
+the last.
+
+From a single page, we:
+* get a **result**
+* get to know the next **start at** position for reading the next page
+* also find out whether the page traversal is **complete**.
+
+This is encapsulated in the `IterationContext` class:
 
 ```ts
-factorial(n: number): Observable<number>
-```
-
-This service uses a `PageContext` to include the fetched results and the current position:
-
-```ts
-class PageContext {
+class IterationContext {
   startAt = 0;
-  result = 1;
-
-  constructor(private readonly n: number) { }
-
-  get completed(): boolean {
-    return this.startAt >= this.n;
-  }
+  result: any = null;
+  completed = false;
 }
 ```
 
+The implementation of the **method to perform a single iteration** has
+the signature:
 
-Iterating through the pages is done by starting on the first page: position zero and moving up until completion. (Unlike for the real paging API, the completed condition can be defined in advance.)
+```ts
+    processPage(ctx: IterationContext): Observable<IterationContext>
+```
 
+As a simplication, let's assume that the return type is an
+`IterationContext` and not an `Observable`. The algorithm to traverse
+all pages would be something like:
 
-Also, taking advantage of the *reactive* paradigm, it makes sense to process fetched page results while other pages are getting read.
+```ts
+while(! ctx.completed) {
+    ctx2 = processPage(ctx);
+    ctx2.result = concatenate(ctx.result, ctx2.result);
+    ctx = ctx2;
+}
+```
 
+... but the result type is an Observable so the algorithm above
+needs to be written with [Rx Operators](http://reactivex.io/documentation/operators.html).
+
+To apply a basic transformation, one can use the [map](http://reactivex.io/documentation/operators/map.html) operator:
+i.e. your tranformation is purely doing basic synchronous operations
+and you return a non observable type T.
+
+Here after reading a page, depending the status we either return
+what we got: *a simple transformation*, or, we need to read another
+page: *an async call* returning an observable. Because of the
+second condition we need to use the [mergeMap](http://reactivex.io/documentation/operators/flatmap.html) operator.
+
+So in the simple while loop becomes:
+
+```ts
+private iteratePages(ctx: IterationContext): Observable<IterationContext> {
+    return this.processPage(ctx)
+        .mergeMap(ctx2 => {
+            ctx2.result = concatenate(ctx.result, ctx2.result);
+            if (ctx2.completed) {
+                return Observable.of(ctx2);
+
+            } else {
+                return this.iteratePages(ctx2);
+            }
+    });
+}
+```
+
+... To be continued.
 
 ## Development server
 
