@@ -106,11 +106,9 @@ private iteratePages(initialCtx: PageContext): Observable<PageContext> {
 }
 ```
 
-###### Demo
-The demo to illustrate the principle of the implementation above uses
-a factorial compuation: [access the demo](https://adelinor.github.io/angular-snippets/#/rxjs-recursive-observable/factorial).
-
-It works! But one has to wait for the full result: i.e. the algorithm above is *blocking*.
+#### Demo
+The [demo to illustrate the implementation principle](https://adelinor.github.io/angular-snippets/#/rxjs-recursive-observable/factorial) computes
+factorial. It works! But one has to wait for the full result: i.e. the algorithm above is *blocking*.
 
 ## Development server
 
