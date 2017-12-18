@@ -10,9 +10,12 @@ describe('FactorialComponent', () => {
   let fixture: ComponentFixture<FactorialComponent>;
 
   beforeEach(async(() => {
+    const activatedRoute = new ActivatedRouteStub();
+    activatedRoute.testParamMap = {};
+
     TestBed.configureTestingModule({
       declarations: [ FactorialComponent ],
-      providers: [ FactorialService, {provide: ActivatedRoute, useValue: new ActivatedRouteStub() } ]
+      providers: [ FactorialService, {provide: ActivatedRoute, useValue: activatedRoute } ]
 
     })
     .compileComponents();
