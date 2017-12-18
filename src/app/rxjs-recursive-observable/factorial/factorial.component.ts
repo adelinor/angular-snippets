@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { FactorialService } from './factorial.service';
 
@@ -7,7 +8,7 @@ import { FactorialService } from './factorial.service';
   templateUrl: './factorial.component.html',
   styleUrls: ['./factorial.component.css']
 })
-export class FactorialComponent {
+export class FactorialComponent implements OnInit {
 
   n: number = null;
   reactive = false;
@@ -15,8 +16,19 @@ export class FactorialComponent {
   factorialResult: number;
   isFinal = false;
 
-  constructor(private factorialService: FactorialService) {}
+  constructor(private factorialService: FactorialService,
+    private route: ActivatedRoute) {}
 
+  ngOnInit(): void {
+    const paramMap = this.route.snapshot.paramMap;
+    if (paramMap.has('n')) {
+      this.n = +paramMap.get('n');
+    }
+    if (paramMap.has('reactive')) {
+      this.reactive = (paramMap.get('reactive') === 'true');
+    }
+  }
+  
   computeFactorial(): void {
     console.log('Reactive ' + this.reactive);
     if (this.reactive) {

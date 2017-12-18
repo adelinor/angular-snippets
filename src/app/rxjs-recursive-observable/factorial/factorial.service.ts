@@ -8,6 +8,13 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/expand';
 
+class IterationContext {
+  startAt = 0;
+  result: any = null;
+  completed = false;
+}
+
+
 class PageContext {
   startAt = 0;
   result = 1;
