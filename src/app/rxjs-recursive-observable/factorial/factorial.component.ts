@@ -28,7 +28,7 @@ export class FactorialComponent implements OnInit {
       this.reactive = (paramMap.get('reactive') === 'true');
     }
   }
-  
+
   computeFactorial(): void {
     console.log('Reactive ' + this.reactive);
     if (this.reactive) {
