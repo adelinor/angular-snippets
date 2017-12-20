@@ -8,13 +8,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/expand';
 
-class IterationContext {
-  startAt = 0;
-  result: any = null;
-  completed = false;
-}
-
-
 class PageContext {
   startAt = 0;
   result = 1;
@@ -26,10 +19,25 @@ class PageContext {
   }
 }
 
-@Injectable()
-export class FactorialService {
+class FactorialSingleOperation {
 
-  constructor() { }
+  processPage(ctx: PageContext): Observable<PageContext> {
+    console.log(`processPage( startAt=${ctx.startAt} )`);
+    ctx.startAt = ctx.startAt + 1;
+    ctx.result = ctx.result * ctx.startAt;
+    return Observable.of(ctx).delay(500);
+  }
+
+}
+
+interface FactorialOperation {
+
+  factorial(n: number): Observable<number>;
+}
+
+class BlockingFactorialServiceImpl implements FactorialOperation {
+
+  constructor(private singleOp: FactorialSingleOperation) { }
 
   factorial(n: number): Observable<number> {
     return this.iteratePages(new PageContext(n))
@@ -37,7 +45,7 @@ export class FactorialService {
   }
 
   private iteratePages(initialCtx: PageContext): Observable<PageContext> {
-    return this.processPage(initialCtx)
+    return this.singleOp.processPage(initialCtx)
       .mergeMap(ctx => {
         if (ctx.completed) {
           return Observable.of(ctx);
@@ -47,19 +55,39 @@ export class FactorialService {
         }
       });
   }
+}
 
-  reactiveFactorial(n: number): Observable<number> {
+class ReactiveFactorialServiceImpl implements FactorialOperation {
+
+  constructor(private singleOp: FactorialSingleOperation) { }
+
+  factorial(n: number): Observable<number> {
     return Observable.of(new PageContext(n))
       .expand( ctx => {
-        return (ctx.completed) ? Observable.empty() : this.processPage(ctx);
+        return (ctx.completed) ? Observable.empty() : this.singleOp.processPage(ctx);
       })
       .map(ctx => ctx.result);
   }
+}
 
-  private processPage(ctx: PageContext): Observable<PageContext> {
-    console.log(`processPage( startAt=${ctx.startAt} )`);
-    ctx.startAt = ctx.startAt + 1;
-    ctx.result = ctx.result * ctx.startAt;
-    return Observable.of(ctx).delay(500);
+@Injectable()
+export class FactorialService {
+
+  private blockingImpl: FactorialOperation;
+  private reactiveImpl: FactorialOperation;
+
+  constructor() {
+    const singleOp = new FactorialSingleOperation();
+    this.blockingImpl = new BlockingFactorialServiceImpl(singleOp);
+    this.reactiveImpl = new ReactiveFactorialServiceImpl(singleOp);
   }
+
+  factorial(n: number): Observable<number> {
+    return this.blockingImpl.factorial(n);
+  }
+
+  reactiveFactorial(n: number): Observable<number> {
+    return this.reactiveImpl.factorial(n);
+  }
+
 }
