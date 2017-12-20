@@ -108,7 +108,15 @@ private iteratePages(initialCtx: PageContext): Observable<PageContext> {
 
 #### Demo
 The [demo to illustrate the implementation principle](https://adelinor.github.io/angular-snippets/#/rxjs-recursive-observable/factorial;n=8) computes
-factorial. It works! But one has to wait for the full result: i.e. the algorithm above is *blocking*.
+factorial. See the [factorial.service.ts](src/app/rxjs-recursive-observable/factorial/factorial.service.ts) implementation:
+* A delay of 500ms is introduced to mimick the latency of retrieving one page of items
+* The code is almost identical to the snippets above.
+
+It works! But one has to wait for the full result: i.e. the algorithm above is *blocking*.
+
+#### RxJS expand operator
+
+...
 
 ## Development server
 
