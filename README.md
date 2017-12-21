@@ -150,7 +150,7 @@ From the perspective of an imperative style developer, the [expand][expand-opera
 * will reinject the non empty result as an input in the next call to the function in expand
 
 #### Demo
-Try now the [demo](https://adelinor.github.io/angular-snippets/#/rxjs-recursive-observable/factorial;n=8;reactive=true) and see how intermediary results are delivered at every step of the calculation ::):
+Try now the [demo](https://adelinor.github.io/angular-snippets/#/rxjs-recursive-observable/factorial;n=8;reactive=true) and see how intermediary results are delivered at every step of the calculation :smile:
 
 ## Develop and build this project
 #### Development server
