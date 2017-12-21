@@ -112,9 +112,46 @@ factorial. See the [factorial.service.ts](src/app/rxjs-recursive-observable/fact
 * A delay of 500ms is introduced to mimick the latency of retrieving one page of items
 * The code is almost identical to the snippets above.
 
-It works! But one has to wait for the full result: i.e. the algorithm above is *blocking*.
+It works! But one has to wait for the full result: i.e. the implementation above yields the results *until the very last iteration*.
 
-#### RxJS expand operator
+## RxJs Observable reactive recursivity
+
+#### The context
+
+As in the section [RxJs Recursive Observable](#rxjs-recursive-observable) 
+we need to read data by iterating through pages. This time we want to
+*issue results as soon as we get them* by processing a page.
+
+#### Concepts
+
+We used an Observable in the [previous section](#rxjs-recursive-observable) but nevertheless ended up with a blocking implementation. Whereas writing a loop is easy, emitting intermediary results was a strugle, until I understood the ...
+
+###### RxJs expand operator
+The [RxJs expand operator][expand-operator-url] will keep the function passed as an argument until it
+returns `Observable.empty()`. 
+
+[expand-operator-url]: https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/expand.md
+
+Let's take a close look at the `ReactiveFactorialServiceImpl` found in [factorial.service.ts](src/app/rxjs-recursive-observable/factorial/factorial.service.ts):
+
+```ts
+factorial(n: number): Observable<number> {
+  return Observable.of(new PageContext(n))
+    .expand( ctx => {
+      return (ctx.completed) ? Observable.empty() : this.singleOp.processPage(ctx);
+    })
+    .map(ctx => ctx.result);
+}
+```
+
+From the perspective of an imperative style developer, the [expand][expand-operator-url] operator will:
+* emit the results down the transformation chain after every call
+* will reinject the non empty result as an input in the next call to the function in expand
+
+#### Demo
+Try now the [demo](https://adelinor.github.io/angular-snippets/#/rxjs-recursive-observable/factorial;n=8;reactive=true) and see how intermediary results are delivered at every step of the calculation :)
+
+
 
 ...
 
