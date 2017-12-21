@@ -1,6 +1,7 @@
 ## Angular Snippets
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5 .
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5 . To run this
+locally, see the [CLI documentation section](#develop-and-build-this-project).
 
 Every snippet is articulated around:
 * *the context*: a brief description of the problem statement
@@ -120,19 +121,19 @@ It works! But one has to wait for the full result: i.e. the implementation above
 
 As in the section [RxJs Recursive Observable](#rxjs-recursive-observable) 
 we need to read data by iterating through pages. This time we want to
-*issue results as soon as we get them* by processing a page.
+*issue results as soon as we get them* from a page.
 
 #### Concepts
 
 We used an Observable in the [previous section](#rxjs-recursive-observable) but nevertheless ended up with a blocking implementation. Whereas writing a loop is easy, emitting intermediary results was a strugle, until I understood the ...
 
 ###### RxJs expand operator
-The [RxJs expand operator][expand-operator-url] will keep the function passed as an argument until it
+The [RxJs expand operator][expand-operator-url] will keep calling the function passed as an argument until it
 returns `Observable.empty()`. 
 
 [expand-operator-url]: https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/expand.md
 
-Let's take a close look at the `ReactiveFactorialServiceImpl` found in [factorial.service.ts](src/app/rxjs-recursive-observable/factorial/factorial.service.ts):
+Let's take a close look at the `ReactiveFactorialServiceImpl` class, in [factorial.service.ts](src/app/rxjs-recursive-observable/factorial/factorial.service.ts#L60):
 
 ```ts
 factorial(n: number): Observable<number> {
@@ -149,33 +150,30 @@ From the perspective of an imperative style developer, the [expand][expand-opera
 * will reinject the non empty result as an input in the next call to the function in expand
 
 #### Demo
-Try now the [demo](https://adelinor.github.io/angular-snippets/#/rxjs-recursive-observable/factorial;n=8;reactive=true) and see how intermediary results are delivered at every step of the calculation :)
+Try now the [demo](https://adelinor.github.io/angular-snippets/#/rxjs-recursive-observable/factorial;n=8;reactive=true) and see how intermediary results are delivered at every step of the calculation ::):
 
-
-
-...
-
-## Development server
+## Develop and build this project
+#### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+#### Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+#### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
+#### Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+#### Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+#### Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
