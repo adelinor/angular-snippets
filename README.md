@@ -152,7 +152,98 @@ From the perspective of an imperative style developer, the [expand][expand-opera
 #### Demo
 Try now the [demo](https://adelinor.github.io/angular-snippets/#/rxjs-recursive-observable/factorial;n=8;reactive=true) and see how intermediary results are delivered at every step of the calculation :smile:
 
+
+## HTML 5 Blob save
+
+#### The context
+
+You want to allow saving locally on the end's user device some content
+downloaded from an API.
+
+#### Concepts
+
+###### Store downloaded content in browser
+
+The downloaded content is saved in the browser's local storage and made
+available to the download to the user by creating a so called
+*HTML 5 blob URL*.
+
+In the code below, the variable `url` will contain the locator
+to that area that stores the content in the browser. This
+locator is what can be used in an anchor element `<a href="">``
+to allow the user to *save* the file.
+
+```ts
+const xml = '<hello></hello>';
+const cnt = new Blob([xml], {type: 'text/xml'});
+const url = window.URL.createObjectURL(cnt);
+```
+
+
+###### Mark the download URL as safe
+
+Angular will prevent a raw URL generated with the `createObjectURL`
+method from working if used as is by adding the prefix `unsafe:`.
+
+To avoid this, one has to inject the `DomSanitizer` utility:
+
+
+```ts
+import { DomSanitizer } from '@angular/platform-browser';
+import { SafeUrl } from '@angular/platform-browser/src/security/dom_sanitization_service';
+
+
+export class MyComponent implements OnDestroy {
+
+  constructor(private sanitizer: DomSanitizer) { }
+
+  // Skip other component details
+
+}
+```
+
+the `DomSanitizer` utility will generate a so-called Safe URL
+and this is what needs to be made available to the HTML view to 
+generate the download anchor:
+
+```ts
+export class MyComponent implements OnDestroy {
+
+  /** URL to use in the Angular view */
+  contentUrl: SafeUrl = null;
+
+  // Skip component details
+
+private onDownloadComplete(xml: string): void {
+    // URL is created with content
+    const url = ...
+
+    // This is how the URL is created for the view
+    this.contentUrl =  this.sanitizer.bypassSecurityTrustUrl(url);
+  }
+}
+```
+
+Showing how the `contentUrl` is used in the view:
+
+```html
+<a class="btn btn-primary" *ngIf="contentUrl"
+    [href]="contentUrl"
+    download="Download.xml">Save document</a>
+```
+
+#### Dispose of storage space after use
+
+The best approach to reclaim the storage space is to implement
+the `OnDestroy` lifecycle hook.
+
+## Demo
+
+Check the [demo](https://adelinor.github.io/angular-snippets/#/blob-save).
+
+
 ## Develop and build this project
+
 #### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
