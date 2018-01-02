@@ -9,6 +9,11 @@ Every snippet is articulated around:
 * *demo*: link to demo of concepts
 * *further*: if applicable, what would deserve more analysis
 
+###### List of snippets:
+* [RxJs Recursive Observable](#rxjs-recursive-observable)
+* [RxJs Observable reactive recursivity](#rxjs-observable-reactive-recursivity)
+* [HTML 5 Blob save](#html-5-blob-save)
+
 All snippets can be tried on the [demo installation](https://adelinor.github.io/angular-snippets)
 
 ## RxJs Recursive Observable
@@ -179,10 +184,8 @@ The locator from the variable `url` is then included in an anchor element `<a hr
 
 Angular will prevent a raw URL generated with the `createObjectURL`
 method from working if used as is by adding the prefix `unsafe:`.
-
 To avoid this, one has to inject the `DomSanitizer` utility as
 shown in the [blob-save.component.ts](src/app/blob-save/blob-save.component.ts) component.
-
 It will generate a `SafeUrl` object which can then be used in
 the HTML view: see  [blob-save.component.html](src/app/blob-save/blob-save.component.html).
 
