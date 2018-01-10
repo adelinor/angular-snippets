@@ -161,7 +161,14 @@ Try now the [demo](https://adelinor.github.io/angular-snippets/#/rxjs-recursive-
 
 #### Further
 
-A consequence of letting the user seeing results as they arrive is to let him *interrupt* the sequence. For this, the article on [RxJs Don't unsuscribe | Medium.com](https://medium.com/@benlesh/rxjs-dont-unsubscribe-6753ed4fda87) proposes
+A beneficial side effect of displaying results as they arrive
+is that the user may want to *interrupt* the process:
+* maybe the user found what he needed in the first results
+* or she/he sees that this is not what she/he was after
+* browses to another page, ...
+
+The [RxJs Don't unsuscribe | Medium.com](https://medium.com/@benlesh/rxjs-dont-unsubscribe-6753ed4fda87)
+article is very pertinent in that respect. It proposes
 the use of the [takeUntil](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-takeUntil) operator.
 A very good illustration can be found in the [ Aligator.io/angular/takeuntil-rxjs-unsubscribe/](https://alligator.io/angular/takeuntil-rxjs-unsubscribe/) example.
 
