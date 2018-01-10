@@ -155,8 +155,15 @@ From the perspective of an imperative style developer, the [expand][expand-opera
 * will reinject the non empty result as an input in the next call to the function in expand
 
 #### Demo
+
 Try now the [demo](https://adelinor.github.io/angular-snippets/#/rxjs-recursive-observable/factorial;n=8;reactive=true) and see how intermediary results are delivered at every step of the calculation :smile:
 
+
+#### Further
+
+A consequence of letting the user seeing results as they arrive is to let him *interrupt* the sequence. For this, the article on [RxJs Dont't unsuscribe | Medium.com](https://medium.com/@benlesh/rxjs-dont-unsubscribe-6753ed4fda87) proposes
+the use of the [takeUntil](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-takeUntil) operator.
+A very good illustration can be found in the [example | Aligator.io/angular](https://alligator.io/angular/takeuntil-rxjs-unsubscribe/).
 
 ## HTML 5 Blob save
 
@@ -195,11 +202,11 @@ The storage space needs to be freed up with the method `window.URL.revokeObjectU
 This call is made by the `ngOnDestroy` method in 
 [blob-save.component.ts](src/app/blob-save/blob-save.component.ts#L24).
 
-## Demo
+#### Demo
 
 Check the [demo](https://adelinor.github.io/angular-snippets/#/blob-save).
 
-## Further
+#### Further
 
 The user experience from the [demo](https://adelinor.github.io/angular-snippets/#/blob-save) displays the progress and the option to save on the same page. This would need to be included in a pop-up for a real app.
 
