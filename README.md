@@ -161,9 +161,9 @@ Try now the [demo](https://adelinor.github.io/angular-snippets/#/rxjs-recursive-
 
 #### Further
 
-A consequence of letting the user seeing results as they arrive is to let him *interrupt* the sequence. For this, the article on [RxJs Dont't unsuscribe | Medium.com](https://medium.com/@benlesh/rxjs-dont-unsubscribe-6753ed4fda87) proposes
+A consequence of letting the user seeing results as they arrive is to let him *interrupt* the sequence. For this, the article on [RxJs Don't unsuscribe | Medium.com](https://medium.com/@benlesh/rxjs-dont-unsubscribe-6753ed4fda87) proposes
 the use of the [takeUntil](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-takeUntil) operator.
-A very good illustration can be found in the [example | Aligator.io/angular](https://alligator.io/angular/takeuntil-rxjs-unsubscribe/).
+A very good illustration can be found in the [ Aligator.io/angular/takeuntil-rxjs-unsubscribe/](https://alligator.io/angular/takeuntil-rxjs-unsubscribe/) example.
 
 ## HTML 5 Blob save
 
