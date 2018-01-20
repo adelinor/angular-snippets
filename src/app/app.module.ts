@@ -9,6 +9,7 @@ import { FactorialService } from './rxjs-recursive-observable/factorial/factoria
 import { FactorialComponent } from './rxjs-recursive-observable/factorial/factorial.component';
 import { BlobSaveComponent } from './blob-save/blob-save.component';
 import { DownloadService } from './blob-save/download.service';
+import { RxjsEventStreamComponent } from './rxjs-event-stream/rxjs-event-stream.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { DownloadService } from './blob-save/download.service';
     AppComponent,
     HomeComponent,
     FactorialComponent,
-    BlobSaveComponent
+    BlobSaveComponent,
+    RxjsEventStreamComponent
   ],
   imports: [
     BrowserModule,
