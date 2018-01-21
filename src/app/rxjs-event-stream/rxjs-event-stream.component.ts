@@ -27,7 +27,7 @@ export class RxjsEventStreamComponent implements OnInit {
   }
 
   search(): void {
-    console.log(`Search with name=${this.name}`)
+    console.log(`Search with name=${this.name}`);
   }
 
 }
