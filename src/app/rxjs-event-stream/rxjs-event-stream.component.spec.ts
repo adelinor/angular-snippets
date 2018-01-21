@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RxjsEventStreamComponent } from './rxjs-event-stream.component';
+import { MovieSearchService } from './movie-search.service';
 
 describe('RxjsEventStreamComponent', () => {
   let component: RxjsEventStreamComponent;
@@ -8,7 +9,8 @@ describe('RxjsEventStreamComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RxjsEventStreamComponent ]
+      declarations: [ RxjsEventStreamComponent ],
+      providers: [ MovieSearchService ]
     })
     .compileComponents();
   }));

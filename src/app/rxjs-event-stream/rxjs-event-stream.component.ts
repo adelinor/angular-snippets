@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MovieSearchService } from './movie-search.service';
 
 @Component({
   selector: 'app-rxjs-event-stream',
@@ -8,18 +9,34 @@ import { Component, OnInit } from '@angular/core';
 export class RxjsEventStreamComponent implements OnInit {
 
   name: string = null;
+  private selectedDates: number[] = [];
+  private selectedCategories: string[] = [];
 
-  constructor() { }
+  searchResults: string;
+
+  constructor(private searchService: MovieSearchService) { }
 
   ngOnInit() {
   }
 
-  toggleDate(choice: string): void {
-    console.log(`Date=${choice}`);
+  toggleDate(choice: number): void {
+    this.toggleChoice(choice, this.selectedDates);
+    this.fireSearch();
+  }
+
+  private toggleChoice<T>(choice: T, selected: Array<T>): void {
+    const pos = selected.indexOf(choice);
+    if (pos < 0) {
+      selected.push(choice);
+
+    } else {
+      selected.splice(pos, 1);
+    }
   }
 
   toggleCategory(choice: string): void {
-    console.log(`Category=${choice}`);
+    this.toggleChoice(choice, this.selectedCategories);
+    this.fireSearch();
   }
 
   updateName(event): void {
@@ -27,7 +44,14 @@ export class RxjsEventStreamComponent implements OnInit {
   }
 
   search(): void {
-    console.log(`Search with name=${this.name}`);
+    this.searchService.search(this.selectedDates,
+      this.selectedCategories, this.name)
+    .subscribe( r => {
+      this.searchResults = r;
+    });
   }
 
+  private fireSearch(): void {
+    this.search();
+  }
 }

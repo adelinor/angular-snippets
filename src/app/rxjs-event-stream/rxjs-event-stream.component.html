@@ -1,20 +1,20 @@
-<form>
+<div>
   <div class="clearfix mt-1">Release date:</div>
   <div class="form-check form-check-inline">
     <label class="form-check-label" for="d1">
-      <input class="form-check-input" type="checkbox" id="d1" value="2018" (click)="toggleDate('2018')">
+      <input class="form-check-input" type="checkbox" id="d1" value="2018" (click)="toggleDate(2018)">
       2018
     </label>
   </div>
   <div class="form-check form-check-inline">
     <label class="form-check-label" for="d2">
-      <input class="form-check-input" type="checkbox" id="d2" value="2017" (click)="toggleDate('2017')">
+      <input class="form-check-input" type="checkbox" id="d2" value="2017" (click)="toggleDate(2017)">
       2017
     </label>
   </div>
   <div class="form-check form-check-inline">
     <label class="form-check-label" for="d3">
-      <input class="form-check-input" type="checkbox" id="d3" value="2016" (click)="toggleDate('2016')">
+      <input class="form-check-input" type="checkbox" id="d3" value="2016" (click)="toggleDate(2016)">
       2016
     </label>
   </div>
@@ -48,11 +48,16 @@
   <div class="form-group" style="margin-top: 0.75em">
     <div class="input-group">
       <input type="text" class="form-control" placeholder="Search by name"
-          id="nameInput" [value]="name" (input)="updateName($event)">
+          id="nameInput" [value]="name" (input)="updateName($event)"
+          (keyup.enter)="search()">
       <div class="input-group-append">
         <button class="btn btn-outline-secondary" type="button"
           (click)="search()">Search</button>
       </div>
     </div>
   </div>
-</form>
+</div>
+
+<div class="alert alert-info" role="alert" *ngIf="searchResults">
+  Searched for <em>{{ searchResults }}</em>
+</div>

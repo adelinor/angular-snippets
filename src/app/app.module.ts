@@ -10,6 +10,7 @@ import { FactorialComponent } from './rxjs-recursive-observable/factorial/factor
 import { BlobSaveComponent } from './blob-save/blob-save.component';
 import { DownloadService } from './blob-save/download.service';
 import { RxjsEventStreamComponent } from './rxjs-event-stream/rxjs-event-stream.component';
+import { MovieSearchService } from './rxjs-event-stream/movie-search.service';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { RxjsEventStreamComponent } from './rxjs-event-stream/rxjs-event-stream.
   ],
   providers: [
     FactorialService,
-    DownloadService
+    DownloadService,
+    MovieSearchService
   ],
   bootstrap: [ AppComponent ]
 })
