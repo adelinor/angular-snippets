@@ -57,6 +57,11 @@
     </div>
   </div>
 </div>
+<button (click)="release()">Release</button>
+
+<div class="alert" role="alert" *ngIf="searching">
+  Searching ...
+</div>
 
 <div class="alert alert-info" role="alert" *ngIf="searchResults">
   Searched for <em>{{ searchResults }}</em>

@@ -11,6 +11,9 @@ import { BlobSaveComponent } from './blob-save/blob-save.component';
 import { DownloadService } from './blob-save/download.service';
 import { RxjsEventStreamComponent } from './rxjs-event-stream/rxjs-event-stream.component';
 import { MovieSearchService } from './rxjs-event-stream/movie-search.service';
+import { MockingComponent } from './mocking/mocking.component';
+import { SampleService } from './mocking/sample.service';
+import { MockingModule } from './mocking/mocking.module';
 
 
 @NgModule({
@@ -19,11 +22,13 @@ import { MovieSearchService } from './rxjs-event-stream/movie-search.service';
     HomeComponent,
     FactorialComponent,
     BlobSaveComponent,
-    RxjsEventStreamComponent
+    RxjsEventStreamComponent,
+    MockingComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MockingModule.forRoot({useMocks: false})
   ],
   providers: [
     FactorialService,

@@ -5,6 +5,7 @@ import { FactorialComponent } from './rxjs-recursive-observable/factorial/factor
 import { BlobSaveComponent } from './blob-save/blob-save.component';
 import { HomeComponent } from './home/home.component';
 import { RxjsEventStreamComponent } from './rxjs-event-stream/rxjs-event-stream.component';
+import { MockingComponent } from './mocking/mocking.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'rxjs-recursive-observable/factorial', component: FactorialComponent },
   { path: 'blob-save', component: BlobSaveComponent },
   { path: 'rxjs-event-stream', component: RxjsEventStreamComponent },
+  { path: 'mocking', component: MockingComponent },
 ];
 
 @NgModule({
