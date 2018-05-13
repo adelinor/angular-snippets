@@ -23,7 +23,7 @@ export class MockingModule {
   }
 
   static forRoot(): ModuleWithProviders {
-      return {
+    return {
         ngModule: MockingModule,
         providers: [
           SampleService
