@@ -1,5 +1,4 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { SampleService } from './sample.service';
 import { MockSampleService } from './mock-sample.service';
@@ -9,8 +8,6 @@ export interface MockingModuleConfig {
 }
 
 @NgModule({
-  imports:      [ CommonModule ],
-  providers:    [ SampleService ]
 })
 export class MockingModule {
   constructor (@Optional() @SkipSelf() parentModule: MockingModule) {
@@ -20,18 +17,21 @@ export class MockingModule {
     }
   }
 
-  static forRoot(config: MockingModuleConfig): ModuleWithProviders {
-    let providers;
-    if (config.useMocks) {
-      providers = [
-        { provide: SampleService, useClass: MockSampleService }
-      ]
-    } else {
-      providers = [ SampleService ]
-    }
+  static forMocks(): ModuleWithProviders {
     return {
-      ngModule: MockingModule,
-      providers: providers
-    };
+        ngModule: MockingModule,
+        providers: [
+          { provide: SampleService, useClass: MockSampleService }
+        ]
+      };
+  }
+
+  static forRoot(): ModuleWithProviders {
+      return {
+        ngModule: MockingModule,
+        providers: [
+          SampleService
+        ]
+      };
   }
 }

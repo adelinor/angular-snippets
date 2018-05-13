@@ -28,7 +28,7 @@ import { MockingModule } from './mocking/mocking.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MockingModule.forRoot({useMocks: false})
+    MockingModule.forMocks()
   ],
   providers: [
     FactorialService,
