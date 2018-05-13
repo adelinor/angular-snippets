@@ -44,7 +44,7 @@ export class RxjsEventStreamComponent implements OnInit {
       const newTimestamp = Date.now();
       console.log(`${newTimestamp - this.previous} -${e}`);
       this.previous = newTimestamp;
-    })
+    });
   }
 
   ngOnInit() {
@@ -92,7 +92,7 @@ export class RxjsEventStreamComponent implements OnInit {
       this.bufferTimer.subscribe(() => {
         this.releaseStream.next(true);
         this.bufferTimer = null;
-      })
+      });
     }
     this.eventStream.next(event);
   }

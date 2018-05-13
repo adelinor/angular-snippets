@@ -3,10 +3,6 @@ import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core
 import { SampleService } from './sample.service';
 import { MockSampleService } from './mock-sample.service';
 
-export interface MockingModuleConfig {
-  useMocks: boolean
-}
-
 @NgModule({
 })
 export class MockingModule {
