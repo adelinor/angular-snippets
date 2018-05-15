@@ -230,7 +230,7 @@ Using Angular's _Modules_, one will encapsulate backend calls and will configure
 
 #### Demo
 
-Please access the very impressive [demo] :)(https://adelinor.github.io/angular-snippets/#/mocking).
+Please access the very impressive [demo](https://adelinor.github.io/angular-snippets/#/mocking) :).
 
 What you see is a very simple string returned by a Mock implementation.
 
