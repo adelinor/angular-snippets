@@ -13,6 +13,7 @@ Every snippet is articulated around:
 * [RxJs Recursive Observable](#rxjs-recursive-observable)
 * [RxJs Observable reactive recursivity](#rxjs-observable-reactive-recursivity)
 * [HTML 5 Blob save](#html-5-blob-save)
+* [Mocking](#mocking)
 
 All snippets can be tried on the [demo installation](https://adelinor.github.io/angular-snippets)
 
@@ -217,6 +218,35 @@ Check the [demo](https://adelinor.github.io/angular-snippets/#/blob-save).
 
 The user experience from the [demo](https://adelinor.github.io/angular-snippets/#/blob-save) displays the progress and the option to save on the same page. This would need to be included in a pop-up for a real app.
 
+## Mocking
+
+#### The context
+Because your workstation cannot reach the real implementations, you need to substitue calls to real APIs by calls to a fake API layer that will mimic the real one.
+
+A mock layer is supposed to be simple and does not intend to replace the real thing. It is more to allow to carry on some work despite not having access to the real backend.
+
+#### Concepts
+Using Angular's _Modules_, one will encapsulate backend calls and will configure the _Dependency Injection_ to use either the module with real implementations or the _mock_ layer.
+
+#### Demo
+
+Please access the very impressive [demo] :)(https://adelinor.github.io/angular-snippets/#/mocking).
+
+What you see is a very simple string returned by a Mock implementation.
+
+The switch between the real or mocks is done in the `app.module`.
+
+This will configure the backend layer module called _mocking_ to use the real implementation:
+
+```ts
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MockingModule.forRoot()
+  ],
+```
+
+Changing `forRoot()` to `forMocks()` will run the backend layer with mocks.
 
 ## Develop and build this project
 
